@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".screens.launch.LaunchActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".screens.start.StartActivity"></activity>
+        <activity android:name=".screens.welcome.WelcomActivity" />
+        <activity android:name=".screens.launch.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
