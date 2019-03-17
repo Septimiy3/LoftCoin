@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.loftschool.loftcoin.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +33,15 @@ public class WelcomeFragment extends Fragment {
         return fragment;
     }
 
+    @BindView(R.id.icon)
+    ImageView icon;
+
+    @BindView(R.id.title)
+    TextView title;
+
+    @BindView(R.id.subtitle)
+    TextView subtitle;
+
 
     public WelcomeFragment() {
         // Required empty public constructor
@@ -45,6 +58,7 @@ public class WelcomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
 
         Bundle args = getArguments();
 
@@ -52,7 +66,9 @@ public class WelcomeFragment extends Fragment {
             WelcomePage page = args.getParcelable(KEY_PAGE);
 
             if (page != null) {
-
+                icon.setImageResource(page.getIcon());
+                title.setText(page.getTitle());
+                title.setText(page.getSubtitle());
             }
         }
     }

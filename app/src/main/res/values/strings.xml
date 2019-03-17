@@ -9,7 +9,5 @@
     <string name="welcom_subtitle_3">Узнай сколько эфира в одном биткоине.</string>
     <string name="welcom_start_btn">Начать</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

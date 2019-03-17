@@ -16,6 +16,12 @@ public class StartActivity extends AppCompatActivity {
         context.startActivity(starter);
     }
 
+    public static void startInNewTask(Context context) {
+        Intent starter = new Intent(context, StartActivity.class);
+        starter.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(starter);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
