@@ -23,5 +23,7 @@
     <color name="grey80">#191a2a</color>
     <color name="grey100">#10101a</color>
 
+    <color name="shape">#02323348</color>
+
 
 </resources>

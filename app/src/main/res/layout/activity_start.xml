@@ -12,16 +12,29 @@
         android:layout_height="206dp"
         android:src="@mipmap/ic_start_top_corner_round"
         app:layout_constraintEnd_toEndOf="@id/start_corner"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/icon"
-        android:layout_width="168dp"
-        android:layout_height="168dp"
+        android:id="@+id/icon_1"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:scaleType="center"
-        android:src="@drawable/ic_icon_start_page"
-        tools:src="@drawable/ic_icon_start_page"
+        android:src="@drawable/icon_star_activity"
+        tools:src="@drawable/icon_star_activity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/icon_2"
+        android:layout_width="102dp"
+        android:layout_height="102dp"
+        android:scaleType="center"
+        android:src="@drawable/icon_start_activity_2"
+        tools:src="@drawable/icon_start_activity_2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,10 +46,26 @@
         android:layout_height="426dp"
         android:src="@mipmap/ic_start_bottom_corner"
         app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/icon_2"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+
+    <TextView
+        android:id="@+id/title_start_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="90dp"
+        android:layout_marginStart="90dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="48sp"
+        android:text="@string/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon_1"
+        tools:text="@string/app_name" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
