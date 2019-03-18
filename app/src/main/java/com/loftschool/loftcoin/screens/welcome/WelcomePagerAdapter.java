@@ -27,7 +27,6 @@ public class WelcomePagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         return WelcomeFragment.newInstance(pages.get(position));
     }
-
     @Override
     public int getCount() {
         return pages.size();

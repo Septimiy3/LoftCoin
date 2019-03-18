@@ -3,6 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".screens.start.StartActivity">
+
+    <ImageView
+        android:id="@+id/start_corner"
+        android:layout_width="242dp"
+        android:layout_height="206dp"
+        android:src="@mipmap/ic_start_top_corner_round"
+        app:layout_constraintEnd_toEndOf="@id/start_corner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="168dp"
+        android:layout_height="168dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_icon_start_page"
+        tools:src="@drawable/ic_icon_start_page"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/start_bottom_corner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_start_bottom_corner"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

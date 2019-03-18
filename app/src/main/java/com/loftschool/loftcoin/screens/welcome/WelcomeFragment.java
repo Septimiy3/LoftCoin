@@ -68,7 +68,7 @@ public class WelcomeFragment extends Fragment {
             if (page != null) {
                 icon.setImageResource(page.getIcon());
                 title.setText(page.getTitle());
-                title.setText(page.getSubtitle());
+                subtitle.setText(page.getSubtitle());
             }
         }
     }
