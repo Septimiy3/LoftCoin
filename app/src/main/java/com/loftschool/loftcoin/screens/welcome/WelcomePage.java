@@ -8,7 +8,6 @@ import androidx.annotation.StringRes;
 
 public class WelcomePage implements Parcelable {
 
-
     @DrawableRes
     private int icon;
 
@@ -36,13 +35,36 @@ public class WelcomePage implements Parcelable {
         return subtitle;
     }
 
+
+    protected WelcomePage(Parcel in) {
+        icon = in.readInt();
+        title = in.readInt();
+        subtitle = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(icon);
+        dest.writeInt(title);
+        dest.writeInt(subtitle);
+    }
+
     @Override
     public int describeContents() {
         return 0;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public static final Creator<WelcomePage> CREATOR = new Creator<WelcomePage>() {
+        @Override
+        public WelcomePage createFromParcel(Parcel in) {
+            return new WelcomePage(in);
+        }
 
-    }
+        @Override
+        public WelcomePage[] newArray(int size) {
+            return new WelcomePage[size];
+        }
+    };
+
+
 }

@@ -11,8 +11,7 @@
         android:layout_width="242dp"
         android:layout_height="206dp"
         android:src="@mipmap/ic_start_top_corner_round"
-        app:layout_constraintEnd_toEndOf="@id/start_corner"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:translationX="-100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,10 +43,10 @@
         android:id="@+id/start_bottom_corner"
         android:layout_width="426dp"
         android:layout_height="426dp"
+        android:translationX="190dp"
+        android:translationY="218dp"
         android:src="@mipmap/ic_start_bottom_corner"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/icon_2"
-        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
