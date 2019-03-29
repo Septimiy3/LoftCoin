@@ -7,7 +7,7 @@
     tools:context=".screens.start.StartActivity">
 
     <ImageView
-        android:id="@+id/start_corner"
+        android:id="@+id/start_top_corner"
         android:layout_width="242dp"
         android:layout_height="206dp"
         android:src="@mipmap/ic_start_top_corner_round"
