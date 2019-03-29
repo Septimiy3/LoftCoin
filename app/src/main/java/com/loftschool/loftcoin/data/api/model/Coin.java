@@ -19,7 +19,7 @@ public class Coin {
     public String slug;
 
     @SerializedName("last_updated")
-    public long lastUpdated;
+    public String lastUpdated;
 
     @SerializedName("quote")
     public Map<String, Quote> quote;
