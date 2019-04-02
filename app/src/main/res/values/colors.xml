@@ -6,6 +6,7 @@
     <color name="accent">#66688F</color>
 
     <color name="golden1">#ff4465</color>
+    <color name="golden2">#ff4464</color>
     <color name="yellow1">#f6ca1d</color>
 
     <color name="orange">#ff7416</color>
@@ -24,6 +25,11 @@
     <color name="grey100">#10101a</color>
 
     <color name="shape">#02323348</color>
+
+    <color name="black">#000000</color>
+
+    <color name="dark_two">#212237</color>
+    <color name="dark_three">#19192a</color>
 
 
 </resources>
