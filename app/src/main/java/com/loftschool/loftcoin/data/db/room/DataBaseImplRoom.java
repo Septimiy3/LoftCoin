@@ -25,4 +25,9 @@ public class DataBaseImplRoom implements DataBase {
     public Flowable<List<CoinEntity>> getCoins() {
         return appDataBase.coinDao().getCoins();
     }
+
+    @Override
+    public CoinEntity getCoin(String symbol) {
+        return appDataBase.coinDao().getCoin(symbol);
+    }
 }
