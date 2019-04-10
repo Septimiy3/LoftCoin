@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.loftschool.loftcoin.R;
+import com.loftschool.loftcoin.screens.converter.ConverterFragment;
 import com.loftschool.loftcoin.screens.rate.RateFragment;
 
 import androidx.annotation.NonNull;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     showRateFragment();
                     return true;
                 case R.id.menu_item_converter:
+                    showConverterFragment();
                     return true;
             }
 
@@ -59,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void showRateFragment() {
         RateFragment fragment = new RateFragment();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.commit();
+    }
+
+    private void showConverterFragment() {
+        ConverterFragment fragment = new ConverterFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);

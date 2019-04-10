@@ -21,6 +21,19 @@
 
     <string name="currency_amout">%s %s</string>
 
+    <string name="dialog_currency_title">Выбор валюты</string>
+    <string name="dialog_currency_dollar">Доллар | USD</string>
+    <string name="symbol_currency_dollar">$</string>
+    <string name="dialog_currency_euro">Евро | EUR</string>
+    <string name="symbol_currency_euro">€</string>
+    <string name="dialog_currency_rouble">Рубль | RUB</string>
+    <string name="symbol_currency_rouble">₽</string>
+
+    <string name="converter_toolbar_title">Конвертер</string>
+
+    <string name="currencies_bottom_sheet_title">Выбор валюты</string>
+    <string name="currencies_bottom_sheet_currency_name">%s | %s</string>
+
 
 </resources>
 
