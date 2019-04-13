@@ -70,6 +70,9 @@ dependencies {
     implementation 'com.jakewharton.rxbinding3:rxbinding-appcompat:3.0.0-alpha2'
     implementation 'com.jakewharton.rxbinding3:rxbinding-material:3.0.0-alpha2'
 
+    //LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+
 
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

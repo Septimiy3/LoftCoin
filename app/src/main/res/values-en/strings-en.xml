@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">LoftCoin</string>
 
+    <string name="currency_amount">%s %s</string>
+
     <string name="welcom_title_1">Покупка и продажа</string>
     <string name="welcom_title_2">Курсе криптовалют</string>
     <string name="welcom_title_3">Конвертер валют</string>
@@ -33,6 +35,8 @@
 
     <string name="currencies_bottom_sheet_title">Выбор валюты</string>
     <string name="currencies_bottom_sheet_currency_name">%s | %s</string>
+
+    <string name="wallets_menu_item_new_wallet">Новый кошелёк</string>
 
 
 </resources>

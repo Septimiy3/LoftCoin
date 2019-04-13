@@ -3,6 +3,8 @@ package com.loftschool.loftcoin.data.db.room;
 
 import com.loftschool.loftcoin.data.db.DataBase;
 import com.loftschool.loftcoin.data.db.model.CoinEntity;
+import com.loftschool.loftcoin.data.db.model.Wallet;
+import com.loftschool.loftcoin.data.db.model.WalletModel;
 
 import java.util.List;
 
@@ -29,5 +31,15 @@ public class DataBaseImplRoom implements DataBase {
     @Override
     public CoinEntity getCoin(String symbol) {
         return appDataBase.coinDao().getCoin(symbol);
+    }
+
+    @Override
+    public void saveWallet(Wallet wallet) {
+        appDataBase.walletDao().saveWallet(wallet);
+    }
+
+    @Override
+    public Flowable<List<WalletModel>> getWallets() {
+        return appDataBase.walletDao().grtWallets();
     }
 }
