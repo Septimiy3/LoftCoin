@@ -1,10 +1,14 @@
 package com.loftschool.loftcoin.screens.wallets;
 
 
+import android.content.Context;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.loftschool.loftcoin.App;
 import com.loftschool.loftcoin.R;
@@ -39,7 +43,6 @@ public class WalletsFragment extends Fragment implements CurrenciesBottomSheetLi
     ViewGroup newWallets;
 
     private WalletsPagerAdapter walletsPagerAdapter;
-
     private WalletsViewModel viewModle;
 
 
@@ -73,6 +76,13 @@ public class WalletsFragment extends Fragment implements CurrenciesBottomSheetLi
         toolbar.setTitle(R.string.wallets_main);
         toolbar.inflateMenu(R.menu.menu_wallets);
 
+        int screenWidth = getScreenWidth();
+        int walletItemWidth = getResources().getDimensionPixelOffset(R.dimen.item_wallet_width);
+        int walletItemMargin = getResources().getDimensionPixelOffset(R.dimen.item_wallet_margin);
+        int pageMargin = (screenWidth - walletItemWidth) - walletItemMargin;
+
+        walletsPager.setPageMargin(-pageMargin);
+        walletsPager.setOffscreenPageLimit(5);
         walletsPager.setAdapter(walletsPagerAdapter);
 
 
@@ -88,18 +98,22 @@ public class WalletsFragment extends Fragment implements CurrenciesBottomSheetLi
     }
 
     private void initOutputs() {
+
         newWallets.setOnClickListener(v -> {
             viewModle.onNewWalletClick();
         });
+
         toolbar.getMenu().findItem(R.id.menu_item_add_wallet).setOnMenuItemClickListener(item -> {
             viewModle.onNewWalletClick();
             return true;
         });
+
     }
 
     private void initInputs() {
+
         viewModle.selectCurrency().observe(this, o -> {
-            showCurrencyBottomSheet();
+            showCurrenciesBottomSheet();
         });
 
         viewModle.newWalletsVisible().observe(this, visible ->
@@ -113,9 +127,10 @@ public class WalletsFragment extends Fragment implements CurrenciesBottomSheetLi
         viewModle.wallets().observe(this, wallets -> {
             walletsPagerAdapter.setWallets(wallets);
         });
+
     }
 
-    private void showCurrencyBottomSheet() {
+    private void showCurrenciesBottomSheet() {
         CurrenciesBottomSheet bottomSheet = new CurrenciesBottomSheet();
 
         bottomSheet.show(getFragmentManager(), CurrenciesBottomSheet.TAG);
@@ -126,4 +141,16 @@ public class WalletsFragment extends Fragment implements CurrenciesBottomSheetLi
     public void onCurrencySelected(CoinEntity coin) {
         viewModle.onCurrencySelected(coin);
     }
+
+    private int getScreenWidth() {
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int heigth = size.y;
+
+        return width;
+    }
+
 }

@@ -9,5 +9,4 @@ public class WalletModel {
 
     @Embedded()
     public CoinEntity coin;
-    public double amount;
 }

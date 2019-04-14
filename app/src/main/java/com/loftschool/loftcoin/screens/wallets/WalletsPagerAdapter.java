@@ -134,17 +134,17 @@ public class WalletsPagerAdapter extends PagerAdapter {
             symbolText.setText(String.valueOf(model.coin.symbol.charAt(0)));
         }
 
-        private void bindPrimaryAmount(WalletModel wallet) {
-            String value = currencyFormatter.format(wallet.amount, true);
-            primaryAmount.setText(itemView.getContext().getString(R.string.currency_amount, value, wallet.coin.symbol));
+        private void bindPrimaryAmount(WalletModel model) {
+            String value = currencyFormatter.format(model.wallet.amount, true);
+            primaryAmount.setText(itemView.getContext().getString(R.string.currency_amount, value, model.coin.symbol));
         }
 
-        private void bindSecondaryAmount(WalletModel wallet) {
+        private void bindSecondaryAmount(WalletModel model) {
 
             Fiat fiat = prefs.getFiatCurrency();
-            QouteEntity quote = wallet.coin.getQuote(fiat);
+            QouteEntity quote = model.coin.getQuote(fiat);
 
-            double amount = wallet.amount * quote.price;
+            double amount = model.wallet.amount * quote.price;
             String value = currencyFormatter.format(amount, false);
 
             secondaryAmount.setText(itemView.getContext().getString(R.string.currency_amount, value, fiat.symbol));

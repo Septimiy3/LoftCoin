@@ -25,20 +25,22 @@ import timber.log.Timber;
 
 public class WalletsViewModelImpl extends WalletsViewModel {
 
-    private DataBase dataBase;
+    private DataBase database;
     private CompositeDisposable disposables = new CompositeDisposable();
 
     public WalletsViewModelImpl(@NonNull Application application) {
         super(application);
         Timber.d("ViewModel constructor");
 
-        dataBase = ((App) getApplication()).getDataBase();
+        database = ((App) getApplication()).getDataBase();
     }
+
 
     private SingleLiveData<Object> selectCurrency = new SingleLiveData<>();
     private MutableLiveData<Boolean> walletsVisible = new MutableLiveData<>();
-    private MutableLiveData<Boolean> newWalletsVisible = new MutableLiveData<>();
+    private MutableLiveData<Boolean> newWalletVisible = new MutableLiveData<>();
     private MutableLiveData<List<WalletModel>> wallets = new MutableLiveData<>();
+
 
     @Override
     public LiveData<Object> selectCurrency() {
@@ -52,7 +54,7 @@ public class WalletsViewModelImpl extends WalletsViewModel {
 
     @Override
     public LiveData<Boolean> newWalletsVisible() {
-        return newWalletsVisible;
+        return newWalletVisible;
     }
 
     @Override
@@ -62,49 +64,57 @@ public class WalletsViewModelImpl extends WalletsViewModel {
 
     @Override
     void getWallets() {
-        Disposable disposable = dataBase.getWallets()
+        Disposable disposable = database.getWallets()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        walletModels -> {
-                            if (walletModels.size() == 0) {
-                                newWalletsVisible.setValue(true);
+                        walletsModels -> {
+
+                            if (walletsModels.isEmpty()) {
+                                newWalletVisible.setValue(true);
                                 walletsVisible.setValue(false);
                             } else {
-                                newWalletsVisible.setValue(false);
+
+                                newWalletVisible.setValue(false);
                                 walletsVisible.setValue(true);
 
-                                wallets.setValue(walletModels);
+                                wallets.setValue(walletsModels);
                             }
+
                         },
+
                         Timber::e
                 );
+
         disposables.add(disposable);
     }
 
     @Override
     void onNewWalletClick() {
-        selectCurrency.postValue(new Object());
+        selectCurrency.setValue(new Object());
     }
 
     @Override
-    void onCurrencySelected(CoinEntity coin) {
-        Wallet wallet = randomWallet(coin);
+    void onCurrencySelected(CoinEntity coinEntity) {
+        Wallet wallet = randomWallet(coinEntity);
 
         Disposable disposable = Observable.fromCallable(() -> {
-            dataBase.saveWallet(wallet);
+            database.saveWallet(wallet);
             return new Object();
         })
-                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
                 .subscribe(o -> {
 
                 }, Timber::e);
+
         disposables.add(disposable);
+
     }
 
     private Wallet randomWallet(CoinEntity coin) {
         Random random = new Random();
         return new Wallet(UUID.randomUUID().toString(), coin.id, 10 * random.nextDouble());
     }
+
 
     @Override
     protected void onCleared() {

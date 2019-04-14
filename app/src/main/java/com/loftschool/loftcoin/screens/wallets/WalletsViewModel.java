@@ -14,9 +14,9 @@ import androidx.lifecycle.LiveData;
 abstract class WalletsViewModel extends AndroidViewModel {
 
     public WalletsViewModel(@NonNull Application application) {
-
         super(application);
     }
+
 
     public abstract LiveData<Object> selectCurrency();
 
@@ -26,9 +26,12 @@ abstract class WalletsViewModel extends AndroidViewModel {
 
     public abstract LiveData<List<WalletModel>> wallets();
 
+
     abstract void getWallets();
 
     abstract void onNewWalletClick();
 
     abstract void onCurrencySelected(CoinEntity coinEntity);
+
+
 }

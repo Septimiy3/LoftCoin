@@ -16,11 +16,8 @@ public class SingleLiveData<T> extends MutableLiveData<T> {
 
     private AtomicBoolean pending = new AtomicBoolean(false);
 
-
     @Override
-    public void observe(@NonNull LifecycleOwner owner, @NonNull Observer observer) {
-        super.observe(owner, observer);
-
+    public void observe(@NonNull LifecycleOwner owner, @NonNull Observer<? super T> observer) {
         if (hasActiveObservers()) {
             Log.w(TAG, "Multiple observers registered but only one will be notified of changes.");
         }
