@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 28
@@ -48,11 +49,7 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
     //Room
-    implementation "androidx.room:room-runtime:2.1.0-alpha04"
-    annotationProcessor "androidx.room:room-compiler:2.1.0-alpha04"
-    // For Kotlin use kapt instead of annotationProcessor
-    // optional - RxJava support for Room
-    implementation "androidx.room:room-rxjava2:2.1.0-alpha04"
+
 
 
     //RxJava

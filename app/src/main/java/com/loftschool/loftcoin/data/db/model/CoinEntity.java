@@ -2,13 +2,11 @@ package com.loftschool.loftcoin.data.db.model;
 
 import com.loftschool.loftcoin.utils.Fiat;
 
-import androidx.room.Embedded;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 
-@Entity(tableName = "Coin")
-public class CoinEntity {
+public class CoinEntity extends RealmObject {
 
     @PrimaryKey
     public int id;
@@ -21,13 +19,10 @@ public class CoinEntity {
 
     public String lastUpdated;
 
-    @Embedded(prefix = "usd")
     public QouteEntity usd;
 
-    @Embedded(prefix = "eur")
     public QouteEntity eur;
 
-    @Embedded(prefix = "rub")
     public QouteEntity rub;
 
 

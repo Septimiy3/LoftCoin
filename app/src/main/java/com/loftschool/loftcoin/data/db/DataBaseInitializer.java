@@ -2,19 +2,20 @@ package com.loftschool.loftcoin.data.db;
 
 import android.content.Context;
 
-import com.loftschool.loftcoin.data.db.room.AppDataBase;
-import com.loftschool.loftcoin.data.db.room.DataBaseImplRoom;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
-import androidx.room.Room;
 
 public class DataBaseInitializer {
 
-    public DataBase init(Context context) {
-        AppDataBase appDataBase = Room.databaseBuilder(context, AppDataBase.class, "LoftCoin.db")
-                .fallbackToDestructiveMigration()
+    public void init(Context context) {
+        Realm.init(context);
+
+        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
+                .name("loftschool.realm")
+                .schemaVersion(1)
                 .build();
 
-
-        return new DataBaseImplRoom(appDataBase);
+        Realm.setDefaultConfiguration(realmConfiguration);
     }
 }

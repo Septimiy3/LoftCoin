@@ -6,6 +6,7 @@ import com.loftschool.loftcoin.data.api.Api;
 import com.loftschool.loftcoin.data.api.ApiInitilizer;
 import com.loftschool.loftcoin.data.db.DataBase;
 import com.loftschool.loftcoin.data.db.DataBaseInitializer;
+import com.loftschool.loftcoin.data.db.realm.DatabaseImplRealm;
 import com.loftschool.loftcoin.data.prefs.Prefs;
 import com.loftschool.loftcoin.data.prefs.PrefsImpl;
 
@@ -16,7 +17,7 @@ public class App extends Application {
 
     private Prefs prefs;
     private Api api;
-    private DataBase dataBase;
+
 
     @Override
     public void onCreate() {
@@ -26,7 +27,7 @@ public class App extends Application {
 
         prefs = new PrefsImpl(this);
         api = new ApiInitilizer().init();
-        dataBase = new DataBaseInitializer().init(this);
+        new DataBaseInitializer().init(this);
     }
 
     public Prefs getPrefs() {
@@ -38,6 +39,6 @@ public class App extends Application {
     }
 
     public DataBase getDataBase() {
-        return dataBase;
+        return new DatabaseImplRealm();
     }
 }

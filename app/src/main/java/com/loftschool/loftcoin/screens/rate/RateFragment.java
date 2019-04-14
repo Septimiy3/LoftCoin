@@ -75,10 +75,11 @@ public class RateFragment extends Fragment implements RateView, Toolbar.OnMenuIt
 
         Api api = ((App) getActivity().getApplication()).getApi();
         Prefs prefs = ((App) getActivity().getApplication()).getPrefs();
-        DataBase dataBase = (((App) getActivity().getApplication()).getDataBase());
+        DataBase mainDatabase = (((App) getActivity().getApplication()).getDataBase());
+        DataBase workerDatabase = (((App) getActivity().getApplication()).getDataBase());
         CoinEntityMapper coinEntityMapper = new CoinEntityMapperImpl();
 
-        presenter = new RatePresenterImpl(prefs, api, dataBase, coinEntityMapper);
+        presenter = new RatePresenterImpl(prefs, api, mainDatabase, workerDatabase, coinEntityMapper);
         adapter = new RateAdapter(prefs);
 
 
