@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
@@ -43,6 +44,7 @@ public class WalletsFragment extends Fragment implements CurrenciesBottomSheetLi
     ViewGroup newWallets;
 
     private WalletsPagerAdapter walletsPagerAdapter;
+    private TransactionsAdapter transactionsAdapter;
     private WalletsViewModel viewModle;
 
 
@@ -59,6 +61,7 @@ public class WalletsFragment extends Fragment implements CurrenciesBottomSheetLi
         Prefs prefs = ((App) getActivity().getApplication()).getPrefs();
 
         walletsPagerAdapter = new WalletsPagerAdapter(prefs);
+        transactionsAdapter = new TransactionsAdapter(prefs);
     }
 
     @Override
@@ -75,6 +78,10 @@ public class WalletsFragment extends Fragment implements CurrenciesBottomSheetLi
 
         toolbar.setTitle(R.string.wallets_main);
         toolbar.inflateMenu(R.menu.menu_wallets);
+
+        transitionRecycler.setLayoutManager(new LinearLayoutManager(requireContext()));
+        transitionRecycler.setHasFixedSize(true);
+        transitionRecycler.setAdapter(transactionsAdapter);
 
         int screenWidth = getScreenWidth();
         int walletItemWidth = getResources().getDimensionPixelOffset(R.dimen.item_wallet_width);
@@ -108,6 +115,13 @@ public class WalletsFragment extends Fragment implements CurrenciesBottomSheetLi
             return true;
         });
 
+        walletsPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                viewModle.onWalletChanged(position);
+            }
+        });
+
     }
 
     private void initInputs() {
@@ -128,6 +142,9 @@ public class WalletsFragment extends Fragment implements CurrenciesBottomSheetLi
             walletsPagerAdapter.setWallets(wallets);
         });
 
+        viewModle.transactions().observe(this, transactionModels -> {
+            transactionsAdapter.setTransactions(transactionModels);
+        });
     }
 
     private void showCurrenciesBottomSheet() {

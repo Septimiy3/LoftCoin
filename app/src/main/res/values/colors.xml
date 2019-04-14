@@ -14,6 +14,8 @@
     <color name="green">#3fe77b</color>
     <color name="white">#ffffff</color>
 
+    <color name="transaction_income">@color/green</color>
+    <color name="transaction_expense">@color/golden2</color>
 
     <color name="grey5">#9c9eb9</color>
     <color name="grey10">#66688f</color>
