@@ -31,4 +31,6 @@ public interface ConverterViewModel {
     void onDestinationCurrencyClick();
 
     void saveState(Bundle state);
+
+    void onDetach();
 }

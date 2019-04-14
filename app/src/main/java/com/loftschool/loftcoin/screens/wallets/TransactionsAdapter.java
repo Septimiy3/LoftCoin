@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.loftschool.loftcoin.R;
 import com.loftschool.loftcoin.data.db.model.QouteEntity;
-import com.loftschool.loftcoin.data.db.model.TransactionModel;
+import com.loftschool.loftcoin.data.db.model.Transaction;
 import com.loftschool.loftcoin.data.prefs.Prefs;
 import com.loftschool.loftcoin.utils.CurrencyFormatter;
 import com.loftschool.loftcoin.utils.Fiat;
@@ -30,7 +30,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
     private static final String TAG = "TransactionsAdapter";
 
 
-    private List<TransactionModel> transactions = Collections.emptyList();
+    private List<Transaction> transactions = Collections.emptyList();
 
     private Prefs prefs;
 
@@ -38,7 +38,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         this.prefs = prefs;
     }
 
-    public void setTransactions(List<TransactionModel> transactions) {
+    public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
         notifyDataSetChanged();
     }
@@ -90,53 +90,53 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
             this.prefs = prefs;
         }
 
-        void bind(TransactionModel model) {
+        void bind(Transaction model) {
             bindIcon(model);
             bindCryptoAmount(model);
             bindFiatAmount(model);
             bindDate(model);
         }
 
-        private void bindIcon(TransactionModel model) {
-            if (model.transaction.amount < 0) {
+        private void bindIcon(Transaction transaction) {
+            if (transaction.amount < 0) {
                 icon.setImageResource(R.drawable.ic_transaction_expense);
             } else {
                 icon.setImageResource(R.drawable.ic_transaction_income);
             }
         }
 
-        private void bindCryptoAmount(TransactionModel model) {
-            if (model.transaction.amount < 0) {
-                String value = "- " + currencyFormatter.format(Math.abs(model.transaction.amount), true);
-                cryptoAmount.setText(itemView.getContext().getString(R.string.currency_amount, value, model.coin.symbol));
+        private void bindCryptoAmount(Transaction transaction) {
+            if (transaction.amount < 0) {
+                String value = "- " + currencyFormatter.format(Math.abs(transaction.amount), true);
+                cryptoAmount.setText(itemView.getContext().getString(R.string.currency_amount, value, transaction.coin.symbol));
             } else {
-                String value = "+ " + currencyFormatter.format(Math.abs(model.transaction.amount), true);
-                cryptoAmount.setText(itemView.getContext().getString(R.string.currency_amount, value, model.coin.symbol));
+                String value = "+ " + currencyFormatter.format(Math.abs(transaction.amount), true);
+                cryptoAmount.setText(itemView.getContext().getString(R.string.currency_amount, value, transaction.coin.symbol));
             }
         }
 
-        private void bindFiatAmount(TransactionModel model) {
+        private void bindFiatAmount(Transaction transaction) {
 
             Fiat fiat = prefs.getFiatCurrency();
-            QouteEntity quote = model.coin.getQuote(fiat);
+            QouteEntity quote = transaction.coin.getQuote(fiat);
 
-            if (model.transaction.amount < 0) {
+            if (transaction.amount < 0) {
                 fiatAmount.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.transaction_expense));
-                double amount = Math.abs(model.transaction.amount) * quote.price;
+                double amount = Math.abs(transaction.amount) * quote.price;
                 String value = "- " + currencyFormatter.format(amount, false);
                 fiatAmount.setText(itemView.getContext().getString(R.string.currency_amount, value, fiat.symbol));
             } else {
                 fiatAmount.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.transaction_income));
-                double amount = Math.abs(model.transaction.amount) * quote.price;
+                double amount = Math.abs(transaction.amount) * quote.price;
                 String value = "+ " + currencyFormatter.format(amount, false);
                 fiatAmount.setText(itemView.getContext().getString(R.string.currency_amount, value, fiat.symbol));
             }
         }
 
-        private void bindDate(TransactionModel model) {
+        private void bindDate(Transaction transaction) {
 
 
-            Date date = new Date(model.transaction.date);
+            Date date = new Date(transaction.date);
             this.date.setText(dateFormatter.format(date));
         }
 

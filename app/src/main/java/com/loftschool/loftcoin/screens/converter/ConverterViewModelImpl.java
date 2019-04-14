@@ -7,10 +7,8 @@ import com.loftschool.loftcoin.data.db.model.CoinEntity;
 import com.loftschool.loftcoin.utils.CurrencyFormatter;
 
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.BehaviorSubject;
 import io.reactivex.subjects.PublishSubject;
 
@@ -75,6 +73,8 @@ public class ConverterViewModelImpl implements ConverterViewModel {
     ConverterViewModelImpl(Bundle saveInstanceState, DataBase database) {
         this.database = database;
 
+        database.open();
+
         if (saveInstanceState != null) {
             sourceCurrencySymbol = saveInstanceState.getString(KEY_SOURCE_CURRENCY);
             destinationCurrencySymbol = saveInstanceState.getString(KEY_DESTINATION_SYMBOL);
@@ -83,14 +83,17 @@ public class ConverterViewModelImpl implements ConverterViewModel {
         loadCoins();
     }
 
+    @Override
+    public void onDetach() {
+        disposables.dispose();
+        database.close();
+    }
+
     private void loadCoins() {
         Disposable disposable = Observable.fromCallable(() -> database.getCoin(sourceCurrencySymbol))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onSourceCurrencySelected);
 
-        Disposable disposable1 = Observable.fromCallable(() -> database.getCoin(destinationCurrencySymbol)).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        Disposable disposable1 = Observable.fromCallable(() -> database.getCoin(destinationCurrencySymbol))
                 .subscribe(this::onDestinationCurrencySelected);
 
         disposables.add(disposable);
