@@ -3,40 +3,44 @@
 
     <string name="currency_amount">%s %s</string>
 
-    <string name="welcom_title_1">Покупка и продажа</string>
-    <string name="welcom_title_2">Курсе криптовалют</string>
-    <string name="welcom_title_3">Конвертер валют</string>
+    <string name="welcom_title_1">Buying and selling</string>
+    <string name="welcom_title_2">Cryptocurrency rate</string>
+    <string name="welcom_title_3">Currency Converter</string>
 
-    <string name="welcom_subtitle_1">Покупай когда дешево, продавай когда дорого.</string>
-    <string name="welcom_subtitle_2">Следи за курсом валют и вовремя реагируй на изменения динамики цены.</string>
-    <string name="welcom_subtitle_3">Узнай сколько эфира в одном биткоине.</string>
+    <string name="welcom_subtitle_1">Buy when cheap, sell when expensive.</string>
+    <string name="welcom_subtitle_2">Watch the exchange rate and respond to price changes in time.</string>
+    <string name="welcom_subtitle_3">Find out how much ethereum in one bitcoin.</string>
 
-    <string name="welcom_start_btn">Начать</string>
+    <string name="welcom_start_btn">launch</string>
 
-    <string name="wallets_main" translatable="false">Кошельки</string>
-    <string name="exchange_main" translatable="false">Курс</string>
-    <string name="convertor_main" translatable="false">Конвертор</string>
+    <string name="wallets_main">Walets</string>
+    <string name="exchange_main">Course</string>
+    <string name="convertor_main">Converter</string>
 
-    <string name="rate_screen_title">Курс криптовалют</string>
-    <string name="rate_menu_item_sort">Сортировка</string>
-    <string name="rate_menu_item_currency">Валюта</string>
+    <string name="rate_screen_title">Cryptocurrency rate</string>
+    <string name="rate_menu_item_sort">Sorting</string>
+    <string name="rate_menu_item_currency">Currency</string>
+    <string name="rate_item_percent_change" translatable="false">%.2f%%</string>
 
     <string name="currency_amout">%s %s</string>
 
-    <string name="dialog_currency_title">Выбор валюты</string>
-    <string name="dialog_currency_dollar">Доллар | USD</string>
+    <string name="dialog_currency_title">Currency selection</string>
+    <string name="dialog_currency_dollar">Dollar | USD</string>
     <string name="symbol_currency_dollar">$</string>
-    <string name="dialog_currency_euro">Евро | EUR</string>
+    <string name="dialog_currency_euro">Euro | EUR</string>
     <string name="symbol_currency_euro">€</string>
-    <string name="dialog_currency_rouble">Рубль | RUB</string>
+    <string name="dialog_currency_rouble">Rouble | RUB</string>
     <string name="symbol_currency_rouble">₽</string>
 
-    <string name="converter_toolbar_title">Конвертер</string>
+    <string name="converter_toolbar_title">Converter</string>
 
-    <string name="currencies_bottom_sheet_title">Выбор валюты</string>
+    <string name="currencies_bottom_sheet_title">Currency selection</string>
     <string name="currencies_bottom_sheet_currency_name">%s | %s</string>
 
-    <string name="wallets_menu_item_new_wallet">Новый кошелёк</string>
+    <string name="wallets_menu_item_new_wallet">New wallet</string>
+
+    <string name="notification_channel_rate_changed">Course change</string>
+    <string name="notification_rate_changed_body">The course has changed %s</string>
 
 
 </resources>
